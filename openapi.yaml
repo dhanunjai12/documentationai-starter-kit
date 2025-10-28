@@ -1,0 +1,95 @@
+openapi: 3.0.3
+info:
+  title: Goom Social API
+  version: 1.0.0
+  description: API for interacting with Goom Social features
+servers:
+  - url: https://api.goomsocial.com
+paths:
+  /messages:
+    get:
+      summary: Retrieve messages
+      operationId: getMessages
+      parameters:
+        - name: userId
+          in: query
+          required: true
+          schema:
+            type: integer
+            example: 123
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Message'
+              examples:
+                success:
+                  value: [{ "id": 1, "content": "Hello World" }]
+  /messages:
+    post:
+      summary: Send a message
+      operationId: sendMessage
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [userId, content]
+              properties:
+                userId:
+                  type: integer
+                  example: 123
+                content:
+                  type: string
+                  example: "Hello, world!"
+            examples:
+              basic:
+                value:
+                  userId: 123
+                  content: "Hello, world!"
+      responses:
+        '201':
+          description: Message sent
+  /users/{userId}:
+    parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          example: 123
+    get:
+      summary: Get user details
+      operationId: getUserDetails
+      responses:
+        '200':
+          description: User details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+components:
+  schemas:
+    Message:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        content:
+          type: string
+          example: "Hello World"
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 123
+        name:
+          type: string
+          example: "John Doe"

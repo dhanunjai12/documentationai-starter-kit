@@ -1,0 +1,53 @@
+---
+title: Webhooks
+description: Utilize webhooks with Goom Social for real-time updates.
+---
+
+## Understanding Webhooks
+
+Webhooks allow Goom Social to send real-time data to your applications whenever certain events occur. This enables seamless integration with other tools and systems.
+
+<Callout kind="info">Ensure your receiving endpoint is correctly configured to handle incoming data.</Callout>
+
+## Setting Up Webhooks
+
+Follow these steps to set up webhooks with Goom Social:
+
+<Steps>
+  <Step title="Create Endpoint" icon="link">
+    Set up a URL endpoint to receive webhook data.
+  </Step>
+  <Step title="Configure Events" icon="settings">
+    Select which events will trigger a webhook.
+  </Step>
+  <Step title="Test Webhook" icon="check-circle">
+    Send a test payload to ensure everything is working.
+  </Step>
+</Steps>
+
+## Supported Events
+
+- **New Message**: Triggered when a new message is received.
+- **Task Completion**: Triggered when a task is marked complete.
+
+<Expandable title="Security Best Practices" default-open="false">
+  Use HTTPS for your webhook URLs to ensure data security.
+</Expandable>
+
+## Example Payload
+
+```json
+{
+  "event": "new_message",
+  "data": {
+    "user": "John Doe",
+    "message": "Hello, world!"
+  }
+}
+```
+
+## Troubleshooting
+
+If you encounter issues with webhooks, refer to our [troubleshooting guide](/troubleshooting) or contact support for assistance.
+
+Ensure your systems are updated to handle the latest webhook formats and enjoy seamless integration with Goom Social.
